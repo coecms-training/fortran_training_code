@@ -1,3 +1,4 @@
-.o
-.mod
-.dat
+*.o
+*.mod
+*.dat
+prime
