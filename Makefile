@@ -1,7 +1,7 @@
 FC=ifort
 FLAGS=
 LFLAGS=$(FLAGS)
-CFLAGS=$(FLAGS)
+CFLAGS=$(FLAGS) -c
 
 .SUFFIXES:
 .SUFFIXES: .F90 .o
@@ -10,7 +10,7 @@ prime : prime.o mod_prime.o
 	$(FC) $(LFLAGS) -o $@ $^
 
 .F90.o:
-	$(FC) $(CFLAGS) -c -o $@ $<
+	$(FC) $(CFLAGS) -o $@ $<
 
 # Dependencies
 
