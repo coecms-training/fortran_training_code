@@ -1,22 +1,34 @@
 module mod_prime
     use, intrinsic :: iso_fortran_env, only: int64
     implicit none
+    integer :: my_int
+    type :: square
+        real :: x, y
+        character(len=20) :: name
+    end type square
+
+    type(square) :: my_square
+
 contains
+
     function is_prime(n)
         integer(kind=int64), intent(in) :: n
         logical :: is_prime
         integer(kind=int64) :: max_test, i
         ! First a few direct removals
+ 
         if (n <= 1_int64) then
             ! Negative numbers, zero, and one are not primes.
             is_prime = .FALSE.
             return
         end if
+
         if (n == 2_int64) then
             ! 2 is the only even prime
             is_prime = .TRUE.
             return
         end if
+
         if ( modulo(n, 2_int64) == 0 ) then
             ! If it were 2, we would have already returned true,
             ! all other even numbers are not primes.
@@ -38,7 +50,7 @@ contains
             end if
         end do
 
-        ! If we reach here, we haven't found a divisor, so it is a prime.
         return
     end function is_prime
+
 end module mod_prime

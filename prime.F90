@@ -3,9 +3,9 @@ program prime
     use :: mod_prime
     implicit none
     integer(kind=int64) :: start, ii
-    integer :: n, idx
+    integer :: n, idx, m
     logical :: p
-    integer, parameter :: fileunit = 101
+    integer, parameter :: fileunit = 1010
     integer :: ios
     character(len=200) :: iom
     integer(kind=int64), allocatable :: primes(:)
@@ -24,11 +24,11 @@ program prime
     allocate(primes(n))
     idx = 0
 
-    open(unit=fileunit, file='data.dat', action='write', status='new', &
-        iostat=ios, iomsg=iom)
+    open(unit=fileunit, file='data.dat', action='write', status='unknown', &
+        iostat=ios, iomsg=iom, form='formatted')
     call check('OPEN')
 
-    do ii = start, 2*start
+    do ii = start, huge(start)
         p = is_prime(ii)
         if ( p ) then
             idx = idx + 1
